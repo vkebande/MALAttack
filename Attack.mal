@@ -1,4 +1,4 @@
-/* MAL specification for a Smart IoT connected environment*/
+/* MAL specification for a Smart IoT connected environment */
 #id:org.mal-lang.smartIoT
 
 Category IoT{
