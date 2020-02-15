@@ -1,0 +1,41 @@
+/* MAL specification for a Smart IoT connected environment*/
+#id:org.mal-lang.smartIoT
+
+Category IoT{
+asset VirtualNodeMachine
+{
+| connect
+    -> access
+ | access
+      -> machine.connect
+ | access
+ }
+ asset Machine
+ {
+ | connect
+      -> authenticateToAccess
+ | authenticate
+       -> authenticateToAccess
+ | byPassControl
+         -> access & compromise
+         user.compromise
+   }
+ asset user
+ {
+ | access
+        -> manipulate
+ | denialOfService
+          -> Attacker.denialofService
+   | shutdown
+            -> shutdown
+   }
+   asset Attacker{
+   | manInTheMiddle
+             -> eavesdrop
+    }
+    Associations{
+    VirtualNodeMachine[VirtualNodeMachines]*<--IoTNetworks-->* [Machines] Machine
+    Machine [Machines] 1 <--Authenticate--> * [users] User
+    User [user] 1 <--ManInTheBrowser--> [Attacks] Attacker
+    }
+     
